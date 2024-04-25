@@ -18,16 +18,16 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: Your awesome title
-email: your-email@example.com
+title: Blog by 21BCP111
+email: sahilshah1483@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
-twitter_username: jekyllrb
-github_username:  jekyll
+  Learn how to build a three-tier application using Docker with our step-by-step tutorial series on our GitHub Pages blog.
+  Follow along as we set up the database, backend, and frontend tiers, complete with Dockerfiles, Docker container creation,
+  and integration of your roll number into the frontend. Explore each part with detailed explanations, code snippets, screenshots,
+  and a GitHub repository for reference.
+baseurl: "blog-three-tier/" # the subpath of your site, e.g. /blog
+url: "https://sahilshah14.github.io/" # the base hostname & protocol for your site, e.g. http://example.com
+github_username:  sahilshah14
 
 # Build settings
 theme: minima
