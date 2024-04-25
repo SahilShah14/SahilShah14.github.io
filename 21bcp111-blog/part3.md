@@ -1,23 +1,29 @@
 ---
-layout: part3
-title: Part 3 - Setting Up the Frontend Tier
-permalink: /part3/
+layout: part1
+title: Tutorial - Creating a Three-Tier Application using Docker
+permalink: /part1/
 ---
 
 <!-- Content for Docker part 3 -->
 
-# Part 3 - Setting Up the Frontend Tier with React
+# Part 1 - Setting Up the Presentation Tier (Front End)
 
-In this part of the tutorial, we will set up the frontend tier using React.
+In this part of the tutorial, we will set up the frontend tier using React.js. 
 
-## Step 1: Dockerfile for React Frontend
+## Step 1: Create the Front End Application 
+
+For our presentation tier, we will create a simple web application using react. Let's name it "MyApp".
+
+## Step 2: Dockerize theFront End
+
+Create a Dockerfile for the front end to containerize the application.
 
 ```dockerfile
 # Use the official Node.js image as the base image for building React app
 FROM node:latest as build
 
 # Set container name with roll number
-ENV REACT_CONTAINER_NAME="react-frontend-21BCP107"
+ENV REACT_CONTAINER_NAME="myapp-frontend-21BCP111"
 
 # Create and set working directory
 WORKDIR /app
@@ -47,12 +53,14 @@ EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
 ```
 ![Image](/images/image.png)
-## Step 2: Building and Running React Frontend Container
- ``` dockerfile
-# Build the Docker image for React frontend
-docker build -t react-frontend-21BCP107 .
 
-# Run the React frontend container
+## Step 3: Build and Run the Docker Image
+
+ ``` dockerfile
+# Build the Docker image for front end
+docker build -t myapp-frontend-21BCP111 .
+
+# Run the Docker container
 docker run -d --name react-frontend-21BCP107 -p 80:80 --network my-network react-frontend-21BCP107
 ```
 
@@ -61,5 +69,17 @@ docker run -d --name react-frontend-21BCP107 -p 80:80 --network my-network react
 
 ![Image](/images/Screenshot 2024-04-23 115136.png)
 
+## Step 4: Verify the Application
 
-## Thank you for visiting the documentation
+Open a web browser and navigate to http://localhost:8080 to see your application running.
+
+## Conclusion
+
+In this part of the tutorial, we successfully set up the presentation tier (front end) of our three-tier application using Docker. In the next part, we will proceed to create the application tier (back end) using Docker containers.
+
+## Stay tuned for Part 2!
+where we will create the application tier (back end) using Docker containers. 
+
+## References:
+
+Nginx Docker Hub: Official Nginx Docker image documentation.
