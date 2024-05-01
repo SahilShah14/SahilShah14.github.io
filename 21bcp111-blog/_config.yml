@@ -25,7 +25,7 @@ description: >- # this means to ignore newlines until "baseurl:"
   Follow along as we set up the database, backend, and frontend tiers, complete with Dockerfiles, Docker container creation,
   and integration of your roll number into the frontend. Explore each part with detailed explanations, code snippets, screenshots,
   and a GitHub repository for reference.
-baseurl: "/21bcp111-blog/" # the subpath of your site, e.g. /blog
+baseurl: "/21bcp111-blog" # the subpath of your site, e.g. /blog
 url: "https://sahilshah14.github.io/" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  sahilshah14
 
