@@ -1,85 +1,68 @@
 ---
-layout: part1
-title: Tutorial - Creating a Three-Tier Application using Docker
-permalink: /part1/
+layout: part3
+title: Tutorial - Creating a Three-Tier Application using Docker (Part 3)
+permalink: /part3/
 ---
 
-<!-- Content for Docker part 3 -->
+<!-- Content for Docker part 1 -->
 
-# Part 1 - Setting Up the Presentation Tier (Front End)
+# Part 3 - Setting Up the Data Tier (Database)
 
-In this part of the tutorial, we will set up the frontend tier using React.js. 
+Welcome back to the final part of our tutorial series! In this part, we will create the data tier (database) of our three-tier application using Docker containers.
 
-## Step 1: Create the Front End Application 
+## Step 1: Choose a Database Management System
 
-For our presentation tier, we will create a simple web application using react. Let's name it "MyApp".
+You can choose PostgreSQL, MongoDB, MySQL etc.
+For our data tier, we will choose MongoDB, a powerful open-source relational database management system.
 
-## Step 2: Dockerize theFront End
-
-Create a Dockerfile for the front end to containerize the application.
+## Step 2: Dockerize the DataBase
 
 ```dockerfile
-# Use the official Node.js image as the base image for building React app
-FROM node:latest as build
+#Let's create a docker-compose.yml file to define our MongoDB database service.
+
+# Use the official MongoDB image as the base image
+FROM mongo:latest
 
 # Set container name with roll number
-ENV REACT_CONTAINER_NAME="myapp-frontend-21BCP111"
-
-# Create and set working directory
-WORKDIR /app
-
-# Copy package.json and package-lock.json
-COPY package*.json ./
-
-# Install dependencies
-RUN npm install
-
-# Copy frontend source code
-COPY . .
-
-# Build React app
-RUN npm run build
-
-# Use NGINX for serving React app
-FROM nginx:alpine
-
-# Copy build files from build stage
-COPY --from=build /app/build /usr/share/nginx/html
-
-# Expose port 80
-EXPOSE 80
-
-# Command to start NGINX
-CMD ["nginx", "-g", "daemon off;"]
-```
-![Image](/images/image.png)
-
-## Step 3: Build and Run the Docker Image
-
- ``` dockerfile
-# Build the Docker image for front end
-docker build -t myapp-frontend-21BCP111 .
-
-# Run the Docker container
-docker run -d --name react-frontend-21BCP107 -p 80:80 --network my-network react-frontend-21BCP107
+ENV MONGO_CONTAINER_NAME="mongodb-21BCP111"
 ```
 
-![Image](/images/Screenshot 2024-04-23 115003.png)
+![Image](/images/Screenshot 2024-04-23 110138.png)
+
+## Step 3: Build and Run the Docker Containers
+
+```dockerfile
+# Build the Docker image for MongoDB
+docker build -t mongodb-21BCP111 .
+
+# Run the MongoDB container
+docker run -d --name mongodb-21BCP111 -p 27017:27017 mongodb-21BCP111
+
+```
+![Image](/images/Screenshot 2024-04-23 114000.png)
 
 
-![Image](/images/Screenshot 2024-04-23 115136.png)
 
-## Step 4: Verify the Application
+## Step 4: Connecting MongoDB Container to Network
+```dockerfile
+# Create a Docker network
+docker network create my-network
 
-Open a web browser and navigate to http://localhost:8080 to see your application running.
+# Connect MongoDB container to the network
+docker network connect my-network mongodb-21BCP111
+```
+
+![Image](/images/Screenshot 2024-04-23 114134.png)
+
+![Image](/images/Screenshot 2024-04-23 114256.png)
+
+## Thank you for visiting the documentation
 
 ## Conclusion
 
-In this part of the tutorial, we successfully set up the presentation tier (front end) of our three-tier application using Docker. In the next part, we will proceed to create the application tier (back end) using Docker containers.
-
-## Stay tuned for Part 2!
-where we will create the application tier (back end) using Docker containers. 
+Congratulations! You have successfully set up all three tiers of your application using Docker containers. The presentation tier (front end), application tier (back end), and data tier (database) are now running as separate containers.
 
 ## References:
+PostgreSQL Docker Hub: Official PostgreSQL Docker image documentation.
 
-Nginx Docker Hub: Official Nginx Docker image documentation.
+## Thank you for following along with this tutorial series!

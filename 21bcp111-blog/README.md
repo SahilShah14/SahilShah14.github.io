@@ -49,17 +49,17 @@ In this part of the tutorial, we will set up the database tier using MongoDB.
 FROM mongo:latest
 
 # Set container name with roll number
-ENV MONGO_CONTAINER_NAME="mongodb-21BCP107"
+ENV MONGO_CONTAINER_NAME="mongodb-21BCP111"
 ```
 
 ## Step 2: building and running the database
 
 ```dockerfile
 # Build the Docker image for MongoDB
-docker build -t mongodb-21BCP107 .
+docker build -t mongodb-21BCP111 .
 
 # Run the MongoDB container
-docker run -d --name mongodb-21BCP107 -p 27017:27017 mongodb-21BCP107
+docker run -d --name mongodb-21BCP111 -p 27017:27017 mongodb-21BCP111
 
 ```
 
@@ -71,7 +71,7 @@ docker run -d --name mongodb-21BCP107 -p 27017:27017 mongodb-21BCP107
 docker network create my-network
 
 # Connect MongoDB container to the network
-docker network connect my-network mongodb-21BCP107
+docker network connect my-network mongodb-21BCP111
 ```
 
 ![Screenshot 2024-04-23 114000](https://github.com/murlipatel1/blog-three-tier/assets/100035961/207e2745-b8bc-4778-a2b2-2b37bb48047e)
